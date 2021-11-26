@@ -1,27 +1,14 @@
-import React,{useState} from 'react';
-import AddUser from './Components/Users/AddUser'
-import UsersList from './Components/Users/UsersList';
+import React from 'react';
+import Counter from './Components/Counter';
+import './App.css'
 
 
-function App() {
-  const [userList, setUserList] = useState([]);
-  const addUserHandler = (uName, uAge) => {
-    setUserList((prevUserList) => {
-      return [
-        ...prevUserList,
-        {name: uName, age: uAge, id: Math.random().toString()},
-      ]
-    })
-  };
-
+const App = () => {
   return (
-    <>
-    <AddUser onAddUser={addUserHandler}/>
-    <UsersList users={userList}/>
-      
-    </>
+    <div className="App">
+      <Counter/>
+    </div>
   )
 }
 
-export default App;
-
+export default App

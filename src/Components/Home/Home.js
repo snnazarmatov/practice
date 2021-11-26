@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Card from '../UI/Card/Card';
+import classes from './Home.module.css';
 
 const Home = () => {
     return (
-        <div>
+        <Card className={classes.home}>
+            <h1>Welcome back!</h1>
             
-        </div>
+        </Card>
     )
 }
 
-export default Home
+export default Home;

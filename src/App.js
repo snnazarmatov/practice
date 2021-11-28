@@ -1,27 +1,15 @@
-import React,{useState} from 'react';
-import AddUser from './Components/Users/AddUser'
-import UsersList from './Components/Users/UsersList';
+import React from 'react'
+import Todos from './Components/Todo/Todos';
+import DispatchTodo from '..//'
 
+export default function App() {
+  
 
-function App() {
-  const [userList, setUserList] = useState([]);
-  const addUserHandler = (uName, uAge) => {
-    setUserList((prevUserList) => {
-      return [
-        ...prevUserList,
-        {name: uName, age: uAge, id: Math.random().toString()},
-      ]
-    })
-  };
 
   return (
-    <>
-    <AddUser onAddUser={addUserHandler}/>
-    <UsersList users={userList}/>
-      
-    </>
+    <div>
+      <Todos />
+      <DispatchTodo/>
+    </div>
   )
 }
-
-export default App;
-

@@ -7,7 +7,9 @@ const App = () => {
 
 
   function fetchMoviesHandler() {
-    fetch('https://swapi.dev/api/films')
+    fetch('https://swapi.dev/api/films',{
+      method: 'GET'
+    })// url дан кийин утур койуп options жазып койсок болот,Жазбай койсокда url ди жазганда фетч озу билип аткарат.
     .then((responce) => {
       return responce.json();
 

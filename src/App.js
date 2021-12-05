@@ -1,27 +1,46 @@
-import React,{useState} from 'react';
-import AddUser from './Components/Users/AddUser'
-import UsersList from './Components/Users/UsersList';
+import React,{useState} from 'react'
+import MoviesList from './Components/MoviesList';
+import './App.css'
+
+const App = () => {
+  const [movies, setMovies] = useState([]);
 
 
-function App() {
-  const [userList, setUserList] = useState([]);
-  const addUserHandler = (uName, uAge) => {
-    setUserList((prevUserList) => {
-      return [
-        ...prevUserList,
-        {name: uName, age: uAge, id: Math.random().toString()},
-      ]
+  function fetchMoviesHandler() {
+    fetch('https://swapi.dev/api/films')
+    .then((responce) => {
+      return responce.json();
+
     })
-  };
-
+    .then((data) => {
+      console.log(data.results);
+      const transformedMovies = data.results.map(movieData => {
+        return {
+          id: movieData.episode_id,
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date,
+          director: movieData.director,
+          producer: movieData.producer
+        }
+      })
+      setMovies(transformedMovies)
+    })
+  }
   return (
-    <>
-    <AddUser onAddUser={addUserHandler}/>
-    <UsersList users={userList}/>
+    <React.Fragment>
+      <section>
+        <button onClick={fetchMoviesHandler}>
+          Fetch movies
+        </button>
+      </section>
+      <section>
+        <MoviesList movies={movies}/>
+      </section>
       
-    </>
+    </React.Fragment>
   )
 }
 
-export default App;
+export default App
 

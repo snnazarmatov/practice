@@ -4,8 +4,7 @@ import Todos from './Components/Todos'
 const App = () => {
   return (
     <div>
-      <Todos/>
-    </div>
+      <Todos/>    </div>
   )
 }
 

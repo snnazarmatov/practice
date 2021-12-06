@@ -4,9 +4,14 @@ import './App.css'
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+//1 edding error
+  const [error, setError] = useState(null);
+
 
 
   function fetchMoviesHandler() {
+    //2 fetch кылаардан алдын тазалап коюу кк дагы бир жолу
+    setError(null)
     fetch('https://swapi.dev/api/films',{
       method: 'GET'
     })// url дан кийин утур койуп options жазып койсок болот,Жазбай койсокда url ди жазганда фетч озу билип аткарат.
@@ -28,6 +33,11 @@ const App = () => {
       })
       setMovies(transformedMovies)
     })
+    //3 catch
+    .catch((error) => {
+      //4 error message
+      setError(error.message);
+    })
   }
   return (
     <React.Fragment>
@@ -37,7 +47,8 @@ const App = () => {
         </button>
       </section>
       <section>
-        <MoviesList movies={movies}/>
+      {/* 5 */}
+        {error ? <p>{error}</p> : <MoviesList movies={movies}/>}
       </section>
       
     </React.Fragment>

@@ -1,0 +1,19 @@
+.movie {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: brown;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.29);
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+}
+.movie h2 {
+    font-size: 2rem;
+    color: chartreuse;
+}
+.movie h3 {
+    color: coral;
+    margin: 0;
+    font-size: 1rem;
+
+}

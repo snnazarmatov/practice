@@ -8,17 +8,18 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [time,setTime] = useState(0);
-  useEffect(() => {
-    const flagInterval = setInterval(() => {
-      console.log('fired');
-      setTime(time + 1)
-    }, 1000);
-    return () => clearInterval(flagInterval)
+  // const [time,setTime] = useState(0);
+  // useEffect(() => {
+  //   const flagInterval = setInterval(() => {
+  //     console.log('fired');
+  //     setTime(time + 1)
+  //   }, 1000);
+  //   return () => clearInterval(flagInterval)
 
-  })
-
+  // })
+// useEffect ke dependise катары fetchMoviesHandler берсек без конечный цикл болгон,аны чечиш учун useCallback мн ороп койдук,бир жолу иштейт болду. 
   const fetchMoviesHandler = useCallback(async () => {
+    //загрузка башталды
     setIsLoading(true)
     setError(null);
     try {
@@ -26,6 +27,7 @@ const App = () => {
 
       //1 backend тен келген ката учун
       if(!response.ok) {
+        //response ok ге = эмес болсо new Error чыгат
         throw new Error(`somthing went wrong ${response.status}`)
       }
       //response пустой болушу мумкун сунда аны кутуптур деп await jazabyz
@@ -45,6 +47,7 @@ const App = () => {
     }catch (error){
       setError(error.message)
     }
+    //try дын ичиндегилер аткарылып буткондон кийин false кылып койобуз
     setIsLoading(false)
   }, [])
 
@@ -54,7 +57,8 @@ const App = () => {
     fetchMoviesHandler();
 
   }, [fetchMoviesHandler]);
-
+  // **************
+//movies тер табылбай калган учурда 
   let content = <p>Found no movies...</p>
 
   if(movies.length > 0) {
@@ -66,12 +70,13 @@ const App = () => {
   if(isLoading) {
     content = <p>Loading...</p>
   }
+  //************ */
   return (
     <React.Fragment>
       <section>
         {/* <button onClick={fetchMoviesHandler}>Fetch movies</button> */}
         <h1>Movies:</h1>
-        <p>{time}</p>
+        {/* <p>{time}</p> */}
       </section>
       <section>
         {content}

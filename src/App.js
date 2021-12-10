@@ -8,6 +8,16 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [time,setTime] = useState(0);
+  useEffect(() => {
+    const flagInterval = setInterval(() => {
+      console.log('fired');
+      setTime(time + 1)
+    }, 1000);
+    return () => clearInterval(flagInterval)
+
+  })
+
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true)
     setError(null);
@@ -61,6 +71,7 @@ const App = () => {
       <section>
         {/* <button onClick={fetchMoviesHandler}>Fetch movies</button> */}
         <h1>Movies:</h1>
+        <p>{time}</p>
       </section>
       <section>
         {content}

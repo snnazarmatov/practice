@@ -10,7 +10,7 @@ const App = () => {
 
 
   function fetchMoviesHandler() {
-    //2 fetch кылаардан алдын тазалап коюу кк дагы бир жолу
+    //2 fetch кылаардан алдын тазалап коюу кк дагы бир жолу точно ошибка жок деген
     setError(null)
     fetch('https://swapi.dev/api/films',{
       method: 'GET'
@@ -47,7 +47,7 @@ const App = () => {
         </button>
       </section>
       <section>
-      {/* 5 */}
+      {/* 5 эгерде error бар болсо error чыгарып бер жок болсо MoviesList чыгар*/}
         {error ? <p>{error}</p> : <MoviesList movies={movies}/>}
       </section>
       

@@ -10,7 +10,7 @@ const AddTodo = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
         let data ={
-            name
+            name,
         }
         props.onSaveTodo(data);
         setName('');
